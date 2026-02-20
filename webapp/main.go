@@ -54,6 +54,7 @@ func handleConnection(c *gosocketio.Channel) {
 	fmt.Println("New client connected")
 	c.Join("visits")
 	// Send all messages in db
+	
 	// --- ADD THIS SECTION ---
 	hostname, err := os.Hostname()
 	if err != nil {
