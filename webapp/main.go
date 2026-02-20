@@ -54,6 +54,14 @@ func handleConnection(c *gosocketio.Channel) {
 	fmt.Println("New client connected")
 	c.Join("visits")
 	// Send all messages in db
+	// --- ADD THIS SECTION ---
+	hostname, err := os.Hostname()
+	if err != nil {
+		hostname = "Unknown Server"
+	}
+	c.Emit("hostname", hostname) 
+	// ------------------------
+
 	for _, msg := range db {
 		c.BroadcastTo("visits", "message", msg)
 	}

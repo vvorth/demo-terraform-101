@@ -48,6 +48,12 @@ function logVisit(record) {
 
 var socket = io({ transports: ["websocket"] });
 
+// --- ADD THIS LISTENER ---
+socket.on("hostname", function(name) {
+  $("#server-info").text("Connected to: " + name);
+});
+// ------------------------
+
 // Listen for messages
 socket.on("message", function(message) {
   logVisit(message);
